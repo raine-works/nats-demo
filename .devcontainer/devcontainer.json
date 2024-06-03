@@ -1,0 +1,26 @@
+{
+  "name": "NATS Demo",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/michidk/devcontainers-features/bun:1": { "version": "1.1.10" },
+    "ghcr.io/devcontainers/features/node:1": { "version": "20.0.0" },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "mounts": [
+    "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind",
+    "source=${env:HOME}${env:USERPROFILE}/.gitconfig,target=/home/vscode/.gitconfig,type=bind",
+    "source=${env:HOME}${env:USERPROFILE}/.config/gh,target=/home/vscode/.config/gh,type=bind"
+  ],
+  "containerEnv": {
+    "NODE_ENV": "development"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "ms-ossdata.vscode-postgresql",
+        "bradlc.vscode-tailwindcss"
+      ]
+    }
+  }
+}

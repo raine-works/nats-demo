@@ -8,4 +8,7 @@ export const sub = async () => {
   for await (const message of subscription) {
     console.log(jc.decode(message.data));
   }
+
+  await nc.drain();
+  await nc.close();
 };

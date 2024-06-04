@@ -2,13 +2,19 @@ import { connect, JSONCodec } from "nats";
 
 const nc = await connect({ servers: "localhost:4222" });
 const jc = JSONCodec();
-const subscription = nc.subscribe("thing");
 
-export const sub = async () => {
+export const subOne = async () => {
+  const subscription = nc.subscribe("topic-one");
+  console.log(`Listening to ${subscription.getSubject()}`);
   for await (const message of subscription) {
-    console.log(jc.decode(message.data));
+    console.log(message.subject, jc.decode(message.data));
   }
+};
 
-  await nc.drain();
-  await nc.close();
+export const subTwoWithQueue = async () => {
+  const subscription = nc.subscribe("topic-two", { queue: "my-queue" });
+  console.log(`Listening to ${subscription.getSubject()}`);
+  for await (const message of subscription) {
+    console.log(message.subject, jc.decode(message.data));
+  }
 };

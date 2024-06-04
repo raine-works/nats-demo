@@ -1,5 +1,8 @@
-import { pub } from "./pub";
-import { sub } from "./sub";
+import { topicOne, topicTwo } from "./pub";
+import { subOne, subTwoWithQueue } from "./sub";
 
-sub();
-pub();
+subOne();
+topicOne();
+
+subTwoWithQueue();
+topicTwo();
